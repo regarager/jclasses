@@ -5,6 +5,10 @@ local util = require("jclasses.util")
 local M = {}
 
 function M.test()
+    print("JClasses: OK!")
+end
+
+function M.new_class()
     local function def_value(package_name)
         if package_name == "" then
             return ""
