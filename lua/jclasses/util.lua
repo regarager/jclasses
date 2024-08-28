@@ -70,7 +70,7 @@ function M.createfile(str)
     local pkg = dir:gsub("/", ".")
 
     if dir ~= "" then
-        dir = "src/main/java/" .. dir
+        dir = "app/src/main/java/" .. dir
     end
 
     local class_name = get_class_name(str)
