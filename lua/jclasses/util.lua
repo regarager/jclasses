@@ -73,6 +73,8 @@ function M.createfile(str)
         dir = "app/src/main/java/" .. dir
     end
 
+    os.execute("mkdir -p " .. dir)
+
     local class_name = get_class_name(str)
     local filename = ""
 
