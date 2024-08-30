@@ -35,12 +35,12 @@ local function get_class_name(class_name)
     return class_name:match("([^%.]+)$")
 end
 
-local function gen_text(pkg, class_name)
+local function gen_text(pkg, class_name, type)
     if pkg == "" then
         return string.format("public class %s {\n\n}", class_name)
     end
 
-    return string.format("package %s;\n\npublic class %s {\n\n}", pkg:gsub("/", "."), class_name)
+    return string.format("package %s;\n\npublic %s %s {\n\n}", pkg:gsub("/", "."), type, class_name)
 end
 
 local function write(filename, content)
@@ -51,7 +51,7 @@ local function write(filename, content)
         print("ERROR: File already exists.")
         return
     else
-        local file, err = io.open(filename, "w")
+        file, err = io.open(filename, "w")
 
         if not file then
             print("Error creating file: " .. err)
@@ -84,7 +84,7 @@ function M.createfile(str)
         filename = class_name .. ".java"
     end
 
-    write(filename, gen_text(pkg, class_name))
+    write(filename, gen_text(pkg, class_name, "class"))
 
     vim.api.nvim_command("edit " .. filename)
 end
